@@ -119,7 +119,7 @@ def vid2frames(url, sampling_interval=1, sample_all_frames=False, **kwargs):
     else:
         skip_frames, path_frames = None, None
         
-    return(skip_frames, path_frames)
+    return(skip_frames, path_frames, fps)
 
 def get_yt_video_id(url):
     """Returns Video_ID extracting from the given url of Youtube
