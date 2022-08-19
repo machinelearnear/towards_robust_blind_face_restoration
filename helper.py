@@ -1,4 +1,4 @@
-# sources:
+# Modified from:
 # - https://yiyixuxu.github.io/2022/06/12/It-Happened-One-Frame.html
 # - https://huggingface.co/spaces/YiYiXu/it-happened-one-frame-2/blob/main/app.py
 
@@ -39,28 +39,27 @@ def select_video_format(url, ydl_opts={}, format_note='240p', ext='mp4', max_siz
     format_id = format.get('format_id', None)
     fps = format.get('fps', None)
     print(f'format selected: {format}')
-    return(format, format_id, fps)
-  
-def download_video(url, **kwargs):
-    # create "videos" foder for saved videos
+    return (format, format_id, fps)
+
+def download_video(url, max_size=480, **kwargs):
+    # create "videos" folder for saved videos
     path_videos = Path('videos')
     try:
         path_videos.mkdir(parents=True)
     except FileExistsError:
         pass
     # clear the "videos" folder 
-    videos_to_keep = ['v1rkzUIL8oc', 'k4R5wZs8cxI','0diCvgWv_ng']
     if len(list(path_videos.glob('*'))) > 10:
         for path_video in path_videos.glob('*'):
             if path_video.stem not in set(videos_to_keep):
                 path_video.unlink()
                 print(f'removed video {path_video}')
     # select format to download for given video
-    # by default select 240p and .mp4 
+    # by default select <=480p and .mp4 
     try:
         format, format_id, fps = select_video_format(url)
         ydl_opts = {
-            'format':format_id,
+            'format': f'bestvideo[ext=mp4]+bestaudio[ext=mp4]/mp4+best[height<={max_size}]',
             'outtmpl': "videos/%(id)s.%(ext)s"}
 
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
@@ -75,7 +74,7 @@ def download_video(url, **kwargs):
         print(f"can't find suitable video formats. we are not able to process video larger than 95 Mib at the moment")
         fps, save_location = None, None
         
-    return(fps, save_location)
+    return (fps, save_location)
 
 def process_video_parallel(video, skip_frames, dest_path, num_processes, process_number, **kwargs):
     cap = cv2.VideoCapture(video)
