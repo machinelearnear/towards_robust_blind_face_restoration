@@ -94,7 +94,7 @@ def process_video_parallel(video, skip_frames, dest_path, num_processes, process
     cap.release()
 
 
-def vid2frames(url, sampling_interval=1, **kwargs):
+def vid2frames(url, sampling_interval=1, sample_all_frames=False, **kwargs):
     # create folder for extracted frames - if folder exists, delete and create a new one
     path_frames = Path('frames')
     try:
@@ -108,6 +108,7 @@ def vid2frames(url, sampling_interval=1, **kwargs):
     if video is not None: 
         if fps is None: fps = 30
         skip_frames = int(fps * sampling_interval)
+        if sample_all_frames: skip_frames = 1
         print(f'video saved at: {video}, fps:{fps}, skip_frames: {skip_frames}')
         # extract video frames at given sampling interval with multiprocessing - 
         n_workers = min(os.cpu_count(), 12)
