@@ -137,8 +137,8 @@ def get_yt_video_id(url):
       Invalid:
         'youtu.be/watch?v=_lOT2p_FCvA',
     """
-
-    from urlparse import urlparse, parse_qs
+    
+    from urllib.parse import urlparse, parse_qs
 
     if url.startswith(('youtu', 'www')):
         url = 'http://' + url
