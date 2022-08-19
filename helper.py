@@ -118,4 +118,4 @@ def vid2frames(url, sampling_interval=1, **kwargs):
     else:
         skip_frames, path_frames = None, None
         
-    return(skip_frames, path_frames)
+    return(skip_frames, path_frames, video)
