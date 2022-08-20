@@ -28,6 +28,9 @@ In this repository we are going to see an example of how to take a sample input,
 
 First, you need to get a [SageMaker Studio Lab](https://studiolab.sagemaker.aws/) account. This is completely free and you don't need an AWS account. Because this new service is still in Preview and AWS is looking to reduce fraud (e.g., crypto mining), you will need to wait 1-3 days for your account to be approved. You can see [this video](https://www.youtube.com/watch?v=FUEIwAsrMP4&ab_channel=machinelearnear) for more information. [Google Colab](https://colab.research.google.com/) also provides free GPU compute (NVIDIA T4/K80).
 
+[![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/machinelearnear/towards_robust_blind_face_restoration/blob/main/step_by_step.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://studiolab.sagemaker.aws/import/github/machinelearnear/towards_robust_blind_face_restoration/blob/main/step_by_step.ipynb)
+
 Now that you have your Studio Lab account, you can follow the steps shown in `blind_face_restoration.ipynb` > [![Open In SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/machinelearnear/towards_robust_blind_face_restoration/blob/main/blind_face_restoration.ipynb)
 
 Click on `Copy to project` in the top right corner. This will open the Studio Lab web interface and ask you whether you want to clone the entire repo or just the Notebook. Clone the entire repo and click `Yes` when asked about building the `Conda` environment automatically. You will now be running on top of a `Python` environment with the basic dependencies installed.
